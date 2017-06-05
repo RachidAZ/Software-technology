@@ -1,0 +1,99 @@
+import java.util.ArrayList;
+
+public class writegroups {
+	static ArrayList<ismatch> a =  new ArrayList<ismatch>();
+
+	public static void main(String[] args) {
+
+		a.add(new ismatch(0,1,'Y','N'));
+		a.add(new ismatch(1,2,'Y','N'));
+		a.add(new ismatch(2,0,'Y','N'));
+		a.add(new ismatch(2,3,'N','N'));
+		a.add(new ismatch(9,6,'Y','N'));
+		a.add(new ismatch(4,5,'N','N'));
+		a.add(new ismatch(4,6,'Y','N'));
+		a.add(new ismatch(3,7,'Y','N'));
+		a.add(new ismatch(4,3,'Y','N'));
+
+		for (ismatch k:a) {
+			k.print();
+		}
+
+
+		ArrayList<ArrayList<Integer>> m = GetGroups(a);
+		for(int i =0;i<m.size();i++){
+			System.out.print("[");
+
+			for (int k = 0; k < m.get(i).size(); k++) {
+				System.out.print(m.get(i).get(k)+",");
+			}
+			System.out.println(" ]");
+		}
+		ArrayList<Integer> j1 = GetMembersWithoutTeam(m,a);
+		System.out.print("member withour group[");
+		for (int i = 0; i < j1.size(); i++) {
+			System.out.print(" "+j1.get(i));
+		}
+		System.out.println("]");
+		for (ismatch k:a) {
+			k.print();
+		}
+	}
+
+	public static ArrayList<Integer> getMatchs (int a,int b,ArrayList<ismatch> a2) {
+		ArrayList<Integer> nouveau = new ArrayList<Integer>();
+
+		nouveau.add(a);
+		nouveau.add(b);
+		for(int i = 0 ; i < a2.size(); i++){
+			if((a2.get(i).Member_A == a || a2.get(i).Member_A == b)  && a2.get(i).ISMATCH=='Y'&& !nouveau.contains(a2.get(i).Member_B)) {nouveau.add(a2.get(i).Member_B);a2.get(i).InGroup='Y';}
+			else if((a2.get(i).Member_B== a || a2.get(i).Member_B== b) && a2.get(i).ISMATCH=='Y'&& !nouveau.contains(a2.get(i).Member_A)) {nouveau.add(a2.get(i).Member_A); a2.get(i).InGroup='Y'; }
+
+		}
+		return nouveau;
+	}
+	public static ArrayList<Integer> finalgetMatchs (int a,ArrayList<ismatch> a2,ArrayList<Integer> a3) {
+		for(int i = 0 ; i < a2.size(); i++){
+			if((a2.get(i).Member_A == a)  && a2.get(i).ISMATCH=='Y') {if(!a3.contains(a2.get(i).Member_B)) a3.add(a2.get(i).Member_B);a2.get(i).InGroup='Y';}
+			else if((a2.get(i).Member_B== a ) && a2.get(i).ISMATCH =='Y' ) {if(!a3.contains(a2.get(i).Member_A))a3.add(a2.get(i).Member_A); a2.get(i).InGroup='Y'; }
+
+		}
+		return a3;
+	}
+	public static ArrayList<ArrayList<Integer>> GetGroups (ArrayList<ismatch> a2){
+
+		ArrayList<ArrayList<Integer> > Groups = new ArrayList<ArrayList<Integer> >();
+
+		for(int i=0 ; i < a2.size();i++){
+
+			if(a2.get(i).InGroup=='N'&&a2.get(i).ISMATCH=='Y'){
+				ArrayList<Integer> k = getMatchs(a2.get(i).Member_A,a2.get(i).Member_B,a2);a2.get(i).InGroup='Y'
+						;
+				for (int j = 0; j < k.size(); j++) {
+					k=finalgetMatchs(k.get(j), a2, k);
+				}
+				Groups.add( k); 
+			}
+		}
+		return Groups; 
+	}
+	public static ArrayList<Integer> GetMembersWithoutTeam(ArrayList<ArrayList<Integer>> j,ArrayList<ismatch> a2){
+		ArrayList<Integer> a = new ArrayList<Integer>();
+		
+		System.out.println(j.size());
+		for (int i = 0; i < a2.size(); i++) {
+		
+				if(ifingroup(j, a2.get(i).Member_A)&& !a.contains(a2.get(i).Member_A)) a.add(a2.get(i).Member_A);
+				if(ifingroup(j, a2.get(i).Member_B)&& !a.contains(a2.get(i).Member_B)) a.add(a2.get(i).Member_B);
+	
+
+		}
+		return a;
+	}
+	public static boolean ifingroup(ArrayList<ArrayList<Integer>> k , int b){
+		for (int i = 0; i < k.size(); i++) {
+			if(k.get(i).contains(b)) return false;
+		}
+		return true;
+	}
+}
