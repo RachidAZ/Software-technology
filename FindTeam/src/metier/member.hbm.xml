@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 29 avr. 2017 06:47:23 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="metier.member" table="MEMBER">
+        <id name="Id_user" type="int">
+            <column name="ID_USER" />
+            <generator class="increment" />
+        </id>
+        <property name="Name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="Last_name" type="java.lang.String">
+            <column name="LAST_NAME" />
+        </property>
+        <property name="Age" type="int">
+            <column name="AGE" />
+        </property>
+        <property name="Languages" type="java.lang.String">
+            <column name="LANGUAGES" />
+        </property>
+        <property name="Neptun" type="java.lang.String">
+            <column name="NEPTUN" />
+        </property>
+        <property name="Email" type="java.lang.String">
+            <column name="EMAIL" />
+        </property>
+        <property name="Skills" type="java.lang.String">
+            <column name="SKILLS" />
+        </property>
+        <property name="Password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+          <property name="Role" type="java.lang.String">
+            <column name="role" />
+        </property>
+        
+        
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 29 avr. 2017 06:47:23 by Hibernate Tools 3.4.0.CR1 
+An association from the table LIKE_Matches refers to an unmapped class: metier.member  -->
+<hibernate-mapping>
+    <class name="metier.Like" table="LIKE_Matches">
+        <id name="LikeID" type="int">
+            <column name="LIKE_ID" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="MemberA" class="metier.member" fetch="join" >
+            <column name="MEMBER_A" />
+        </many-to-one>
+        <many-to-one name="MemberB" class="metier.member" fetch="join" >
+            <column name="MEMBER_B" />
+        </many-to-one>
+        <many-to-one name="project" class="metier.project" fetch="join" >
+            <column name="PROJECT_id" />
+        </many-to-one>
+        <property name="date_like" type="java.util.Date">
+            <column name="DATE_LIKE" />
+        </property>
+        <property name="IsMatch" type="character">
+            <column name="ISMATCH" />
+        </property>
+         <property name="InGroup" type="character">
+            <column name="INGROUP" />
+        </property>
+    </class>
+</hibernate-mapping>

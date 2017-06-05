@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 29 avr. 2017 06:47:23 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="metier.project" table="PROJECT">
+        <id name="project_id" type="int">
+            <column name="PROJECT_ID" />
+            <generator class="increment" />
+        </id>
+        <property name="Description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+        <property name="Deadline" type="java.util.Date">
+            <column name="DEADLINE" />
+        </property>
+        <property name="Max_Inteam" type="int">
+            <column name="MAX_INTEAM" />
+        </property>
+        <property name="ShowMatch" type="boolean">
+            <column name="SHOWMATCH" />
+        </property>
+        <many-to-one name="admin" class="metier.Admin" fetch="join">
+            <column name="ADMIN_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

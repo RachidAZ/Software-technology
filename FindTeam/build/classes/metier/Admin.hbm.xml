@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 29 avr. 2017 06:47:23 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="metier.Admin" table="ADMIN">
+        <id name="Admin_id" type="int">
+            <column name="ADMIN_ID" />
+            <generator class="increment" />
+        </id>
+        <property name="Name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="Email" type="java.lang.String">
+            <column name="EMAIL" />
+        </property>
+         <property name="Password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        
+          <property name="Role" type="java.lang.String">
+            <column name="role" />
+        </property>
+        
+    </class>
+</hibernate-mapping>
