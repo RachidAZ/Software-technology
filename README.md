@@ -7,3 +7,4 @@ dao layer , business layer , Spring Controllers , 'Util' folder for Hibernate Se
 -The jars used are in the folder 'lib' inside WEB-INF
 The Dao/business layers tests are in the folder 'metier'
 The database will be created authomatically ( based on hibernate config files ) after the first start of the project , you can speficify or modify these information in the file 'Hibernate.cfg.xml'.
+---> JMeter used for performance testing
